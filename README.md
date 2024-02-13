@@ -44,15 +44,15 @@ python manage.py migrate
 ## Criar SuperUsuario
 
 ```
-python manage.py startapp clientes
-
-Adicione a app criada em STALLED_APPS em settings
+python manage.py createsuperuser
 ```
 
 ## Criar app inicial
 
 ```
-python manage.py createsuperuser
+python manage.py startapp clientes
+
+Adicione a app criada em STALLED_APPS em settings
 ```
 
 ## 1_ Criar Models
