@@ -95,7 +95,7 @@ class ClienteSerializer(serializers.ModelSerializer):
 ## 4_ Criar Views usando generics views
 
 ```
-import as generics e os serializers
+importar Generics/Serializers
 
 from rest_framework import generics
 from clientes.models import Cliente
