@@ -154,7 +154,7 @@ pip install djangorestframework-simplejwt
 
 ```
 python manage.py startapp authentication
-
+'authentication'
 ```
 ## Crie Urls / importar rest_framework_simplejwt
 
