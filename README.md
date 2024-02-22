@@ -110,17 +110,72 @@ class ClienteRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ClienteSerializer
 ```
 
-## 5_ Criar Urls
+## 5_ Criar Urls separadas para cada tabela
 
 ```
-from django.contrib import admin
+Exemplos:
+Urls/Clientes:
+
 from django.urls import path
+from . import views
 
-Sempre importe as Views criadas 
+urlpatterns = [
+    
+    path('clientes/',views.ClienteCreateListView.as_view(), name = 'cliente-create-list'),
+    path('clientes/<int:pk>/', views.ClienteRetrieveUpdateDestroyView.as_view() , name = 'cliente-detail-view'),
+    
+]
 
-from clientes.views import ClienteCreateListView, ClienteRetrieveUpdateDestroyView 
+Urls/Apps:
 
-path('clientes/',ClienteCreateListView.as_view(), name = 'cliente-create-list'),
-path('clientes/<int:pk>/', ClienteRetrieveUpdateDestroyView.as_view() , name = 'cliente-detail-view')
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/v1/', include('authentication.urls')),
+    path('api/v1/', include('clientes.urls')),
+    path('api/v1/', include('serviços.urls')),  
+    path('api/v1/', include('tiposerviço.urls')),  
+]
+
 ```
+## 6_ instalar JWT para autenticação
+
+```
+pip install djangorestframework-simplejwt
+
+-Adicionar em INSTALLED_APPS
+
+'rest_framework_simplejwt',
+```
+
+## Criar app da autenticação / adicione em installed_apps
+
+```
+python manage.py startapp authentication
+
+```
+## Crie Urls / importar rest_framework_simplejwt
+
+```
+from django.urls import path
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+urlpatterns = [
+    path('authentication/token/',TokenObtainPairView,name = 'token_obtain_pair')
+]
+
+configure o projeto com JWT/Adicione em settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (       
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+```
+
+
+
 
