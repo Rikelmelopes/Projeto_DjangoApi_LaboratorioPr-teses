@@ -140,17 +140,15 @@ urlpatterns = [
 ]
 
 ```
-## 6_ instalar JWT para autenticação
+## 6_ instalar JWT para autenticação / Adicionar em INSTALLED_APPS
 
 ```
 pip install djangorestframework-simplejwt
 
--Adicionar em INSTALLED_APPS
-
 'rest_framework_simplejwt',
 ```
 
-## Criar app da autenticação / adicione em installed_apps
+## Criar app da autenticação /  Adicionar em INSTALLED_APPS
 
 ```
 python manage.py startapp authentication
